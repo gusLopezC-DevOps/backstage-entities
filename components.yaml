@@ -1,0 +1,13 @@
+apiVersion: backstage.io/v1alpha1
+kind: Location
+metadata:
+  name: devops-entities
+  description: Backstage entities from gusLopezC-DevOps organization
+spec:
+  targets:
+    - https://raw.githubusercontent.com/gusLopezC-DevOps/K3s-Argo-Actions-API_Python/main/catalog-info.yaml
+    - https://raw.githubusercontent.com/gusLopezC-DevOps/K3s_MLOpsPipelines/main/catalog-info.yaml
+    - https://raw.githubusercontent.com/gusLopezC-DevOps/dagger-python-automation-example/main/catalog-info.yaml
+    - https://raw.githubusercontent.com/gusLopezC-DevOps/pe-backstage-k8sactions-python3/master/catalog-info.yaml
+    - https://raw.githubusercontent.com/gusLopezC-DevOps/K3s_OrangePi_Manifests/main/catalog-info.yaml
+    - https://raw.githubusercontent.com/gusLopezC-DevOps/3-Tier-DevSecOps-Mega-Project/main/catalog-info.yaml
