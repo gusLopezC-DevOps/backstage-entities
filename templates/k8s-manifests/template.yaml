@@ -1,0 +1,60 @@
+apiVersion: scaffolder.backstage.io/v1beta3
+kind: Template
+metadata:
+  name: crossplane-local-deployment
+  title: Crossplane Local Deployment
+  description: Scaffold a Crossplane LocalDeployment claim that abstracts Deployment, Service, and Kong Ingress into a single resource
+  tags:
+    - crossplane
+    - kubernetes
+    - deployment
+    - kong
+    - golden-path
+  annotations:
+    github.com/project-slug: gusLopezC-DevOps/backstage-entities
+spec:
+  owner: development
+  type: service
+  parameters:
+    - title: Application Details
+      properties:
+        appName:
+          title: Application Name
+          type: string
+          description: Name of the application (used for labels and resource names)
+        image:
+          title: Container Image
+          type: string
+          description: Docker image with semantic version tag (e.g., nginx:1.27-alpine). CRITICAL: Do not use :latest or Kyverno will reject it.
+        hostname:
+          title: Hostname
+          type: string
+          description: Hostname for the ingress (e.g., myapp.local)
+        port:
+          title: Container Port
+          type: number
+          default: 80
+          description: Port the container listens on
+  steps:
+    - id: fetch
+      name: Fetch Crossplane Claim Template
+      action: fetch:template
+      input:
+        url: ./skeleton
+    - id: publish
+      name: Publish to GitOps Repo
+      action: publish:github
+      input:
+        repoUrl: https://github.com/gusLopezC-DevOps
+        repoName: backstage-gitops
+        branch: main
+        host: github.com
+        gitCommitMessage: "Add Crossplane LocalDeployment claim for ${{ parameters.appName }}"
+        contents:
+          - path: apps/${{ parameters.appName }}
+            source: ${{ steps.fetch.output }}
+            action: append
+  output:
+    links:
+      - title: ArgoCD
+        url: https://argocd.local/applications/platform-workloads-${{ parameters.appName }}
