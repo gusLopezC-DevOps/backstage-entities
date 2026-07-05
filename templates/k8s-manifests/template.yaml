@@ -25,7 +25,7 @@ spec:
         image:
           title: Container Image
           type: string
-          description: Docker image with semantic version tag (e.g., nginx:1.27-alpine). CRITICAL: Do not use :latest or Kyverno will reject it.
+          description: 'Docker image with semantic version tag (e.g., nginx:1.27-alpine). CRITICAL: Do not use :latest or Kyverno will reject it.'
         hostname:
           title: Hostname
           type: string
