@@ -1,0 +1,13 @@
+apiVersion: example.crossplane.io/v1alpha1
+kind: LocalDeployment
+metadata:
+  name: ${{ parameters.appName | default('my-app') }}
+  namespace: workloads
+  labels:
+    backstage.io/kubernetes-id: ${{ parameters.appName | default('my-app') }}
+spec:
+  parameters:
+    image: ${{ parameters.image | default('nginx:1.27-alpine') }}
+    hostname: ${{ parameters.hostname | default('my-app.local') }}
+    port: ${{ parameters.port | default(80) }}
+    replicas: 1
