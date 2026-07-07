@@ -42,12 +42,12 @@ spec:
       input:
         url: ./crossplane-skeleton
     - id: publish
-      name: Publish to GitOps Repo
-      action: publish:github
+      name: Push to GitOps Repo
+      action: github:repo:push
       input:
         repoUrl: github.com?owner=gusLopezC-DevOps&repo=backstage-gitops
         branch: main
-        gitCommitMessage: "Add Crossplane LocalDeployment claim for ${{ parameters.appName }}"
+        commitMessage: "Add Crossplane LocalDeployment claim for ${{ parameters.appName }}"
         contents:
           - path: apps/workloads/${{ parameters.appName }}
             source: ${{ steps.fetch.output }}
