@@ -40,7 +40,7 @@ spec:
       name: Fetch Crossplane Claim Template
       action: fetch:template
       input:
-        url: ./skeleton
+        url: ./crossplane-skeleton
     - id: publish
       name: Publish to GitOps Repo
       action: publish:github
@@ -49,7 +49,7 @@ spec:
         branch: main
         gitCommitMessage: "Add Crossplane LocalDeployment claim for ${{ parameters.appName }}"
         contents:
-          - path: apps/${{ parameters.appName }}
+          - path: apps/workloads/${{ parameters.appName }}
             source: ${{ steps.fetch.output }}
             action: append
   output:
