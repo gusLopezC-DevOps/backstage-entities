@@ -42,13 +42,13 @@ spec:
       input:
         url: ./crossplane-skeleton
     - id: publish
-      name: Publish to New GitHub Repo
-      action: publish:github
+      name: Push to Workloads Repo
+      action: gitops:push-to-repo
       input:
-        repoUrl: github.com?owner=gusLopezC-DevOps&repo=workload-${{ parameters.appName }}
-        repoVisibility: public
-        defaultBranch: main
+        repoUrl: github.com?owner=gusLopezC-DevOps&repo=backstage-workloads
+        branch: main
         gitCommitMessage: "Add LocalDeployment claim for ${{ parameters.appName }}"
+        subPath: apps/workloads/${{ parameters.appName }}
   output:
     links:
       - title: ArgoCD
