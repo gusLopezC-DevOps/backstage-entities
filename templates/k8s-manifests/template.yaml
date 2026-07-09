@@ -38,15 +38,9 @@ spec:
   steps:
     - id: fetch
       name: Fetch Crossplane Claim Template
-      action: fetch:template
+      action: fetch:plain
       input:
         url: ./crossplane-skeleton
-        values:
-          parameters:
-            appName: ${{ parameters.appName }}
-            image: ${{ parameters.image }}
-            hostname: ${{ parameters.hostname }}
-            port: ${{ parameters.port }}
     - id: publish
       name: Push to Workloads Repo
       action: gitops:push-to-repo
@@ -55,6 +49,10 @@ spec:
         branch: main
         gitCommitMessage: "Add LocalDeployment claim for ${{ parameters.appName }}"
         subPath: apps/workloads/${{ parameters.appName }}
+        appName: ${{ parameters.appName }}
+        image: ${{ parameters.image }}
+        hostname: ${{ parameters.hostname }}
+        port: ${{ parameters.port }}
   output:
     links:
       - title: ArgoCD
