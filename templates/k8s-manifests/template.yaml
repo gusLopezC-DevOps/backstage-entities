@@ -41,6 +41,12 @@ spec:
       action: fetch:template
       input:
         url: ./crossplane-skeleton
+        values:
+          parameters:
+            appName: ${{ parameters.appName }}
+            image: ${{ parameters.image }}
+            hostname: ${{ parameters.hostname }}
+            port: ${{ parameters.port }}
     - id: publish
       name: Push to Workloads Repo
       action: gitops:push-to-repo
