@@ -53,7 +53,15 @@ spec:
         image: ${{ parameters.image }}
         hostname: ${{ parameters.hostname }}
         port: ${{ parameters.port }}
+    - id: register
+      name: Register Component in Catalog
+      action: catalog:register
+      input:
+        repoContentsUrl: https://github.com/gusLopezC-DevOps/backstage-workloads/blob/main
+        catalogInfoPath: /apps/workloads/${{ parameters.appName }}/catalog-info.yaml
   output:
     links:
       - title: ArgoCD
         url: https://argocd.local/applications/${{ parameters.appName }}
+      - title: Component in Catalog
+        url: https://backstage.local/catalog/default/component/${{ parameters.appName }}
