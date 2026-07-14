@@ -6,7 +6,7 @@ metadata:
   annotations:
     backstage.io/kubernetes-id: ${{ appName }}
     backstage.io/kubernetes-namespace: workloads
-    janus-idp.io/kyverno: enabled
+    kyverno.io/resource-name: ${{ appName }}
 spec:
   type: service
   lifecycle: experimental
